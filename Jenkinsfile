@@ -1,5 +1,9 @@
 pipeline {
     agent none
+    environment {
+        DOCKER_IMAGE = "web_api_huy"
+    }
+
     stages {
         stage("build") {
             environment {
