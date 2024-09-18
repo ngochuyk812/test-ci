@@ -7,6 +7,7 @@ pipeline {
                 DOCKER_IMAGE="ngochuy/webapi"
             }
             steps {
+                agent any
                 script {
                     echo "Docker Tag: ${DOCKER_TAG}"
                 }
