@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage("build") {
             environment {
-                DOCKER_TAG="${GIT_COMMIT.substring(0,7)}"
+                DOCKER_TAG="1232123"
             }
             steps {
                 script {
