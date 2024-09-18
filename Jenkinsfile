@@ -2,12 +2,12 @@ pipeline {
     agent none
     stages {
         stage("build") {
+            agent any
             environment {
                 DOCKER_TAG="1232123"
                 DOCKER_IMAGE="ngochuy/webapi"
             }
             steps {
-                agent any
                 script {
                     echo "Docker Tag: ${DOCKER_TAG}"
                 }
