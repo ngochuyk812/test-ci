@@ -1,5 +1,9 @@
 pipeline {
-    agent none
+    agent {
+          docker {
+            args '-u 0:0 -v /tmp:/root/.cache'
+          }
+    }
     environment {
         DOCKER_IMAGE = "web_api_huy"
     }
