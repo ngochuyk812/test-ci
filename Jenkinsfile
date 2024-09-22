@@ -5,7 +5,7 @@ pipeline {
             agent any
             environment {
                 DOCKER_TAG="1232123"
-                DOCKER_IMAGE="ngochuy/webapi"
+                DOCKER_IMAGE="ngochuyk8/webapi"
             }
             steps {
                 script {
