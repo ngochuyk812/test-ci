@@ -8,7 +8,7 @@ pipeline {
         stage("build") {
             agent any
             environment {
-                DOCKER_TAG = "${env.GIT_BRANCH}-${env.GIT_COMMIT.take(6)}" 
+                DOCKER_TAG = "${env.GIT_COMMIT.take(6)}" 
                 DOCKER_IMAGE = "ngochuyk8/webapi"
             }
             steps {
