@@ -8,7 +8,7 @@ pipeline {
             agent any
             environment {
                 // Sử dụng tên nhánh và 8 ký tự đầu tiên của commit ID
-                DOCKER_TAG = "${env.BRANCH_NAME}-${env.GIT_COMMIT.take(8)}"
+                DOCKER_TAG = "${env.GIT_COMMIT.take(8)}"
             }
             steps {
                 script {
