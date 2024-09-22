@@ -8,7 +8,7 @@ pipeline {
         stage("build") {
             agent any
             environment {
-                DOCKER_TAG = "${env.BRANCH_NAME}-${env.GIT_COMMIT.take(6)}" 
+                DOCKER_TAG = "${env.GIT_BRANCH}-${env.GIT_COMMIT.take(6)}" 
                 DOCKER_IMAGE = "ngochuyk8/webapi"
             }
             steps {
@@ -34,9 +34,15 @@ pipeline {
             }
         }
         stage('Deploy') {
-            agent any // Bạn có thể chọn agent ở đây
+            agent any 
             steps {
                 script {
+                    echo 'Removing existing container if it exists...'
+                    sh """
+                    if [ \$(docker ps -aq -f name=webapi) ]; then
+                        docker rm -f webapi
+                    fi
+                    
                     echo 'Pulling the image...'
                     sh "docker pull ${DOCKER_IMAGE}:latest"
                     
