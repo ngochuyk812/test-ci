@@ -1,15 +1,14 @@
 pipeline {
     agent none
     environment {
-        DOCKER_TAG = "1232123"
-        DOCKER_IMAGE = "ngochuyk8/webapi"           
+        DOCKER_IMAGE = "ngochuyk8/webapi"
     }
     stages {
-        stage("build") {
+        stage("Build") {
             agent any
             environment {
-                DOCKER_TAG = "${env.GIT_COMMIT.take(8)}" 
-                DOCKER_IMAGE = "ngochuyk8/webapi"
+                // Sử dụng tên nhánh và 8 ký tự đầu tiên của commit ID
+                DOCKER_TAG = "${env.BRANCH_NAME}-${env.GIT_COMMIT.take(8)}"
             }
             steps {
                 script {
@@ -42,6 +41,7 @@ pipeline {
                     if [ \$(docker ps -aq -f name=webapi) ]; then
                         docker rm -f webapi
                     fi
+                    """
                     
                     echo 'Pulling the image...'
                     sh "docker pull ${DOCKER_IMAGE}:latest"
