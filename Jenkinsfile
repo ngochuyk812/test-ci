@@ -41,7 +41,7 @@ pipeline {
                     sh "docker pull ${DOCKER_IMAGE}:latest"
                     
                     echo 'Running the container...'
-                    sh "docker run -d --name ${DOCKER_IMAGE} -p 80:5085 ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                    sh "docker run -d --name webapi -p 80:8080 ${DOCKER_IMAGE}:${DOCKER_TAG}"
                 }
             }
         }
