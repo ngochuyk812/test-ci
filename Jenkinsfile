@@ -1,5 +1,9 @@
 pipeline {
     agent none
+    environment {
+        DOCKER_TAG = "1232123"
+        DOCKER_IMAGE = "ngochuyk8/webapi"           
+    }
     stages {
         stage("build") {
             agent any
@@ -34,10 +38,10 @@ pipeline {
             steps {
                 script {
                     echo 'Pulling the image...'
-                    sh "docker pull ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                    sh "docker pull ${DOCKER_IMAGE}:latest"
                     
                     echo 'Running the container...'
-                    sh "docker run -d --name my_container ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                    sh "docker run -d --name ${DOCKER_IMAGE} -p 80:5085 ${DOCKER_IMAGE}:${DOCKER_TAG}"
                 }
             }
         }
